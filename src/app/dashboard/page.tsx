@@ -1,7 +1,7 @@
 import { PaisCard } from '@/components/pais-card';
 
 const getDashboardData = async () => {
-  const response = await fetch('http://localhost:3000/api/dashboard');
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/dashboard`);
 
   const data = await response.json();
 
