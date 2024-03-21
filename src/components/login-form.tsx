@@ -1,6 +1,10 @@
 'use client';
 
+import { useRouter } from 'next/navigation'
+
 export const LoginForm = () => {
+  const router = useRouter();
+
   return (
     <form
       className="flex flex-col items-center"
@@ -12,7 +16,7 @@ export const LoginForm = () => {
         const user = formData.get('user');
         const password = formData.get('password');
 
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('/api/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -22,7 +26,9 @@ export const LoginForm = () => {
 
         const data = await response.json();
 
-        console.log('data recibida', data);
+        if (data.message === "Bienvenido") {
+          router.push('/dashboard');
+        }
       }}
     >
       <h1 className="text-4xl font-bold mb-8">Iniciar sesión</h1>
