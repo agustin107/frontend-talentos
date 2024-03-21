@@ -8,7 +8,7 @@ const getDashboardData = async () => {
 
     const data = await response.json();
 
-    return data || { data: [] };
+    return data;
   } catch (error) {
     console.error(error);
 
