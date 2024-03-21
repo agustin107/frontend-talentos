@@ -1,11 +1,19 @@
 import { PaisCard } from '@/components/pais-card';
 
 const getDashboardData = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/dashboard`);
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/dashboard`
+    );
 
-  const data = await response.json();
+    const data = await response.json();
 
-  return data || {};
+    return data || {};
+  } catch (error) {
+    console.error(error);
+
+    return {};
+  }
 };
 
 export default async function DashboardPage() {
