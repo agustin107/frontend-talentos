@@ -1,8 +1,10 @@
 'use client';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export const LoginForm = () => {
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   return (
@@ -26,7 +28,9 @@ export const LoginForm = () => {
 
         const data = await response.json();
 
-        if (data.message === "Bienvenido") {
+        if (response.ok === false) {
+          setError(data.message);
+        } else {
           router.push('/dashboard');
         }
       }}
@@ -50,6 +54,7 @@ export const LoginForm = () => {
       >
         Ingresar
       </button>
+      {error && <p className="text-red-500">{error}</p>}
     </form>
   );
 };
