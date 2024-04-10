@@ -15,8 +15,9 @@ export const LoginForm = () => {
 
         // get form data
         const formData = new FormData(event.currentTarget);
-        const user = formData.get('user');
-        const password = formData.get('password');
+        const user = formData.get('user')?.toString();
+        const password = formData.get('password')?.toString();
+
 
         const response = await fetch('/api/login', {
           method: 'POST',
