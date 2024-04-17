@@ -1,5 +1,7 @@
+import { DeleteCountryButton } from '@/components/delete-country-button';
 import { createServerClient } from '@/utils/supabase/server';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function PaisPorIdPage({ params }: any) {
   const supabase = createServerClient();
@@ -15,6 +17,9 @@ export default async function PaisPorIdPage({ params }: any) {
         height={100}
         alt={data?.name}
       />
+
+      <Link href={`/dashboard/pais/${data?.name}/edit`}>Editar</Link>
+      <DeleteCountryButton country={data} />
     </div>
   );
 }
